@@ -1,12 +1,12 @@
 export default defineAppConfig({
   pages: [
-    "pages/drill/index", // 将 drill 页面设为首页
+    "pages/drill/index",
     "pages/ranking/index",
     "pages/hangout/index",
-    "pages/index/index", // 将 index 页面放到最后
+    "pages/profile/index", // 添加个人中心页面
+    "pages/index/index",
     "pages/drill/dink/index",
     "pages/drill/dink/diagonal/index",
-    // 其他丁克球练习页面路径
     "pages/drill/dink/cat-mouse/index",
   ],
   tabBar: {
@@ -27,6 +27,10 @@ export default defineAppConfig({
         pagePath: "pages/hangout/index",
         text: "约球",
       },
+      {
+        pagePath: "pages/profile/index", // 添加个人中心到底部导航
+        text: "我的",
+      },
     ],
   },
   window: {
@@ -35,4 +39,9 @@ export default defineAppConfig({
     navigationBarTitleText: "Go Pickleball",
     navigationBarTextStyle: "black",
   },
+  permission: {
+    "scope.userLocation": {
+      desc: "您的位置信息将用于查找附近的球友"
+    }
+  }
 });
