@@ -9,9 +9,6 @@ export default function Hangout() {
 
   return (
     <View className="hangout">
-      <View className="icon-wrapper">
-        <Text className="icon iconfont icon-friends"></Text>
-      </View>
       <Text>约球页面</Text>
     </View>
   );

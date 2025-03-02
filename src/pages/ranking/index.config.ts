@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '排名'
-})
+  navigationBarTitleText: "Go Pickleball",
+});

@@ -9,9 +9,6 @@ export default function Ranking() {
 
   return (
     <View className="ranking">
-      <View className="icon-wrapper">
-        <Text className="icon iconfont icon-rank"></Text>
-      </View>
       <Text>排名页面</Text>
     </View>
   );

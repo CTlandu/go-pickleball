@@ -9,9 +9,6 @@ export default function Drill() {
 
   return (
     <View className='drill'>
-      <View className='icon-wrapper'>
-        <Text className='icon iconfont icon-video'></Text>
-      </View>
       <Text>练球页面</Text>
     </View>
   )
