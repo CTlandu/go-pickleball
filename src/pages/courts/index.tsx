@@ -9,7 +9,7 @@ export default function Hangout() {
 
   return (
     <View className="hangout">
-      <Text>约球页面</Text>
+      <Text>球场</Text>
     </View>
   );
 }

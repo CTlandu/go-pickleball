@@ -2,7 +2,7 @@ export default defineAppConfig({
   pages: [
     "pages/drill/index",
     "pages/ranking/index",
-    "pages/hangout/index",
+    "pages/courts/index",
     "pages/profile/index", // 添加个人中心页面
     "pages/index/index",
     "pages/drill/dink/index",
@@ -24,8 +24,8 @@ export default defineAppConfig({
         text: "排名",
       },
       {
-        pagePath: "pages/hangout/index",
-        text: "约球",
+        pagePath: "pages/courts/index",
+        text: "球场",
       },
       {
         pagePath: "pages/profile/index", // 添加个人中心到底部导航
@@ -41,7 +41,7 @@ export default defineAppConfig({
   },
   permission: {
     "scope.userLocation": {
-      desc: "您的位置信息将用于查找附近的球友"
-    }
-  }
+      desc: "您的位置信息将用于查找附近的球友",
+    },
+  },
 });
