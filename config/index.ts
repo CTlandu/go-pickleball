@@ -18,7 +18,10 @@ export default defineConfig<"vite">(async (merge, { command, mode }) => {
     sourceRoot: "src",
     outputRoot: "dist",
     plugins: [],
-    defineConstants: {},
+    defineConstants: {
+      // 添加腾讯位置服务API密钥
+      LOCATION_APIKEY: JSON.stringify("756BZ-OSR6C-EMF2K-AK2V7-ZHMOV-CUFNJ"), // 替换为您的实际API密钥
+    },
     copy: {
       patterns: [],
       options: {},

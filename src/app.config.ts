@@ -39,9 +39,11 @@ export default defineAppConfig({
     navigationBarTitleText: "Go Pickleball",
     navigationBarTextStyle: "black",
   },
+  // 添加以下配置
+  requiredPrivateInfos: ["getLocation"],
   permission: {
     "scope.userLocation": {
-      desc: "您的位置信息将用于查找附近的球友",
+      desc: "您的位置信息将用于查找附近的球场",
     },
   },
 });
