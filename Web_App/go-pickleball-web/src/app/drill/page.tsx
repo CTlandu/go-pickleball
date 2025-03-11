@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import ImagePlaceholder from '@/components/ImagePlaceholder';
 
 const drillTypes = [
   { id: 1, title: 'Dink', subtitle: '丁克球', description: '短距离控制性击球练习', path: '/drill/dink' },
@@ -15,13 +15,8 @@ export default function DrillPage() {
         {drillTypes.map((drill) => (
           <Link key={drill.id} href={drill.path}>
             <div className="bg-white rounded-xl shadow-md overflow-hidden flex h-32">
-              <div className="w-1/3 bg-gray-200 relative">
-                <Image
-                  src="https://via.placeholder.com/150"
-                  alt={drill.title}
-                  fill
-                  className="object-cover"
-                />
+              <div className="w-1/3 relative">
+                <ImagePlaceholder />
               </div>
               <div className="w-2/3 p-4 flex flex-col justify-center">
                 <h2 className="text-xl font-bold text-gray-800">{drill.title}</h2>
