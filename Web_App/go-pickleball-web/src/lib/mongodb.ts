@@ -1,15 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/go-pickleball';
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/go-pickleball";
 
 if (!MONGODB_URI) {
-  throw new Error('请定义 MONGODB_URI 环境变量');
+  throw new Error("请定义 MONGODB_URI 环境变量");
 }
 
-let cached = global.mongoose;
+let cached: {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+} = (global as any).mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
 async function dbConnect() {

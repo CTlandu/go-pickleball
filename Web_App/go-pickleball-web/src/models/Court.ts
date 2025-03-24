@@ -32,6 +32,9 @@ const CourtSchema = new mongoose.Schema(
       },
       rednote: {
         type: String,
+      },
+      meituan: {
+        type: String,
       }
     },
     openHours: {
@@ -39,8 +42,8 @@ const CourtSchema = new mongoose.Schema(
       required: [true, "请输入营业时间"],
     },
     price: {
-      type: Number,
-      required: [true, "请输入订场价格"],
+      type: String,
+      required: [true, "请输入价格信息"],
     },
     images: [
       {
