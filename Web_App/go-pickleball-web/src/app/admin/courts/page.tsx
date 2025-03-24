@@ -98,7 +98,7 @@ export default function AdminCourtsPage() {
       const res = await fetch("/api/courts");
       const data = await res.json();
       setCourts(data);
-    } catch (error) {
+    } catch (error: any) {
       setMessage("获取球场信息失败：" + error.message);
     } finally {
       setLoading(false);
@@ -136,7 +136,7 @@ export default function AdminCourtsPage() {
         const data = await res.json();
         setMessage("删除失败：" + data.error);
       }
-    } catch (error) {
+    } catch (error: any) {
       setMessage("删除出错：" + error.message);
     }
   };
@@ -182,7 +182,7 @@ export default function AdminCourtsPage() {
       } else {
         setMessage((editingId ? "更新" : "添加") + "失败：" + data.error);
       }
-    } catch (error) {
+    } catch (error: any) {
       setMessage("提交出错：" + error.message);
     }
   };
@@ -209,32 +209,236 @@ export default function AdminCourtsPage() {
     setPreviewUrls([]);
   };
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    if (name.startsWith("contact.")) {
+      const contactField = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        contact: {
+          ...prev.contact,
+          [contactField]: value,
+        },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">
         {editingId ? "编辑球场信息" : "添加新球场"}
       </h1>
 
-      {/* 表单部分保持不变 */}
-      {/* ... */}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              球场名称
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
 
-      <div className="flex justify-between mt-6">
-        <button
-          type="submit"
-          className="w-2/3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
-        >
-          {editingId ? "更新球场信息" : "添加球场"}
-        </button>
-        {editingId && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              省份
+            </label>
+            <input
+              type="text"
+              name="province"
+              value={formData.province}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              城市
+            </label>
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              区县
+            </label>
+            <input
+              type="text"
+              name="district"
+              value={formData.district}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700">
+              详细地址
+            </label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              营业时间
+            </label>
+            <input
+              type="text"
+              name="openHours"
+              value={formData.openHours}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              价格
+            </label>
+            <input
+              type="text"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              电话
+            </label>
+            <input
+              type="text"
+              name="contact.telephone"
+              value={formData.contact.telephone}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              微信
+            </label>
+            <input
+              type="text"
+              name="contact.wechat"
+              value={formData.contact.wechat}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              小红书
+            </label>
+            <input
+              type="text"
+              name="contact.rednote"
+              value={formData.contact.rednote}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              美团
+            </label>
+            <input
+              type="text"
+              name="contact.meituan"
+              value={formData.contact.meituan}
+              onChange={handleInputChange}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700">
+              上传图片
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              className="mt-1 block w-full"
+            />
+            {previewUrls.length > 0 && (
+              <div className="grid grid-cols-3 gap-2 mt-2">
+                {previewUrls.map((url, index) => (
+                  <div key={index} className="relative h-24">
+                    <Image
+                      src={url}
+                      alt={`预览图片 ${index + 1}`}
+                      fill
+                      className="object-cover rounded"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(index)}
+                      className="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="flex justify-between mt-6">
           <button
-            type="button"
-            onClick={resetForm}
-            className="w-1/4 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
+            type="submit"
+            className="w-2/3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
           >
-            取消编辑
+            {editingId ? "更新球场信息" : "添加球场"}
           </button>
-        )}
-      </div>
+          {editingId && (
+            <button
+              type="button"
+              onClick={resetForm}
+              className="w-1/4 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
+            >
+              取消编辑
+            </button>
+          )}
+        </div>
+      </form>
 
       {/* 球场列表 */}
       <div className="mt-8">
@@ -268,7 +472,7 @@ export default function AdminCourtsPage() {
               {/* 图片预览 */}
               {court.images && court.images.length > 0 && (
                 <div className="grid grid-cols-3 gap-2 mb-4">
-                  {court.images.map((image, index) => (
+                  {court.images.map((image, index) =>
                     image ? (
                       <div
                         key={index}
@@ -284,7 +488,7 @@ export default function AdminCourtsPage() {
                         />
                       </div>
                     ) : null
-                  ))}
+                  )}
                 </div>
               )}
 
