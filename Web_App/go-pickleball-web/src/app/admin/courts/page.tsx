@@ -25,9 +25,13 @@ export default function AdminCourtsPage() {
       }
       const data = await res.json();
       setCourts(data);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("获取球场数据失败:", error);
-      setMessage("获取球场信息失败：" + error.message);
+      if (error instanceof Error) {
+        setMessage("获取球场信息失败：" + error.message);
+      } else {
+        setMessage("获取球场信息失败");
+      }
     } finally {
       setLoading(false);
     }
@@ -54,8 +58,12 @@ export default function AdminCourtsPage() {
         const data = await res.json();
         setMessage((editingCourt ? "更新" : "添加") + "失败：" + data.error);
       }
-    } catch (error: any) {
-      setMessage("提交出错：" + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage("提交出错：" + error.message);
+      } else {
+        setMessage("提交出错");
+      }
     }
   };
 
@@ -71,8 +79,12 @@ export default function AdminCourtsPage() {
         const data = await res.json();
         setMessage("删除失败：" + data.error);
       }
-    } catch (error: any) {
-      setMessage("删除出错：" + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage("删除出错：" + error.message);
+      } else {
+        setMessage("删除出错");
+      }
     }
   };
 

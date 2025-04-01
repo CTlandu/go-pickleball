@@ -31,8 +31,6 @@ export default function CourtForm({
     images: editingCourt?.images || [],
   });
 
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
-
   // 区分已有图片URL和新上传的Base64图片
   const [existingImages, setExistingImages] = useState<string[]>(
     editingCourt?.images || []
@@ -63,7 +61,6 @@ export default function CourtForm({
 
       setExistingImages(editingCourt.images || []);
       setNewImagePreviews([]);
-      setImageFiles([]);
     }
   }, [editingCourt]);
 
@@ -72,7 +69,6 @@ export default function CourtForm({
     return () => {
       // 组件卸载时清理内存中的图片预览数据
       setNewImagePreviews([]);
-      setImageFiles([]);
     };
   }, []);
 
@@ -89,7 +85,6 @@ export default function CourtForm({
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const newFiles = Array.from(e.target.files);
-      setImageFiles((prev) => [...prev, ...newFiles]);
 
       try {
         // 将文件转换为Base64字符串
@@ -132,9 +127,6 @@ export default function CourtForm({
       setNewImagePreviews(updatedNewPreviews);
 
       // 同时移除对应的File对象
-      setImageFiles((prev) => prev.filter((_, i) => i !== newIndex));
-
-      // 更新表单数据
       setFormData((prev) => ({
         ...prev,
         images: [...existingImages, ...updatedNewPreviews],
