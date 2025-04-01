@@ -1,13 +1,14 @@
-const Logo = () => {
-  return (
-    <div className="w-8 h-8 rounded-full overflow-hidden bg-[#1B1464] flex items-center justify-center">
-      <img
-        src="/go-pickleball-logo.png"
-        alt="Go Pickleball Logo"
-        className="w-6 h-6 object-contain"
-      />
-    </div>
-  );
-};
+import Image from "next/image";
 
-export default Logo;
+export default function Logo() {
+  return (
+    <Image
+      src="/logo.png"
+      alt="Go Pickleball Logo"
+      width={150}
+      height={40}
+      priority
+      className="h-10 w-auto"
+    />
+  );
+}

@@ -1,5 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -8,6 +9,7 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-explicit-any": ["warn"]
+    "@typescript-eslint/no-explicit-any": "error",
+    "@next/next/no-img-element": "error"
   }
 }

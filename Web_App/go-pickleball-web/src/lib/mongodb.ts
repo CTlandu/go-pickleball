@@ -1,33 +1,42 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/go-pickleball";
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
-  throw new Error("请定义 MONGODB_URI 环境变量");
+  throw new Error("请在环境变量中设置 MONGODB_URI");
 }
 
-let cached: {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
-} = (global as any).mongoose;
+/**
+ * 全局变量用于缓存数据库连接
+ * 在开发模式下，保持连接alive可以热重载
+ */
+interface MongooseConnection {
+  conn: mongoose.Connection | null;
+  promise: Promise<mongoose.Connection> | null;
+}
+
+declare global {
+  var mongoose: MongooseConnection;
+}
+
+let cached = global.mongoose || { conn: null, promise: null };
 
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
-async function dbConnect() {
+async function dbConnect(): Promise<mongoose.Connection> {
   if (cached.conn) {
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
+    const opts: mongoose.ConnectOptions = {
+      bufferCommands: true,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
+      return mongoose.connection;
     });
   }
 
