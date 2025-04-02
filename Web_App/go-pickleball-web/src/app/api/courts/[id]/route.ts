@@ -3,10 +3,11 @@ import { Error as MongooseError } from "mongoose";
 import dbConnect from "@/lib/mongodb";
 import Court from "@/models/Court";
 
-type Params = { params: { id: string } };
-
 // 获取单个球场信息
-export async function GET(_: NextRequest, { params }: Params) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     await dbConnect();
     const court = await Court.findById(params.id);
@@ -23,7 +24,10 @@ export async function GET(_: NextRequest, { params }: Params) {
 }
 
 // 更新球场信息
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const body = await request.json();
     await dbConnect();
@@ -44,7 +48,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
 }
 
 // 删除球场信息
-export async function DELETE(_: NextRequest, { params }: Params) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     await dbConnect();
     const court = await Court.findByIdAndDelete(params.id);
