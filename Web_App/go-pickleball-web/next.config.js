@@ -11,14 +11,6 @@ const nextConfig = {
       },
     ],
   },
-  // 确保 CSS 模块正确加载
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.css$/,
-      use: ["style-loader", "css-loader", "postcss-loader"],
-    });
-    return config;
-  },
 };
 
 module.exports = nextConfig;
