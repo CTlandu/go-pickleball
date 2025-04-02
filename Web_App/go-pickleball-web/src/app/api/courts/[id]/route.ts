@@ -1,19 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Error as MongooseError } from "mongoose";
 import dbConnect from "@/lib/mongodb";
 import Court from "@/models/Court";
 
-interface RouteParams {
-  params: {
-    id: string;
-  };
-}
-
 // 获取单个球场信息
-export async function GET(request: Request, { params }: RouteParams) {
+export async function GET(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
     await dbConnect();
-    const court = await Court.findById(params.id);
+    const court = await Court.findById(context.params.id);
     if (!court) {
       return NextResponse.json({ error: "球场不存在" }, { status: 404 });
     }
@@ -27,11 +24,14 @@ export async function GET(request: Request, { params }: RouteParams) {
 }
 
 // 更新球场信息
-export async function PUT(request: Request, { params }: RouteParams) {
+export async function PUT(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
     const body = await request.json();
     await dbConnect();
-    const court = await Court.findByIdAndUpdate(params.id, body, {
+    const court = await Court.findByIdAndUpdate(context.params.id, body, {
       new: true,
       runValidators: true,
     });
@@ -48,10 +48,13 @@ export async function PUT(request: Request, { params }: RouteParams) {
 }
 
 // 删除球场信息
-export async function DELETE(request: Request, { params }: RouteParams) {
+export async function DELETE(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
     await dbConnect();
-    const court = await Court.findByIdAndDelete(params.id);
+    const court = await Court.findByIdAndDelete(context.params.id);
     if (!court) {
       return NextResponse.json({ error: "球场不存在" }, { status: 404 });
     }
