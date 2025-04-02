@@ -5,7 +5,7 @@ export const isProduction = process.env.NODE_ENV === "production";
 
 export const ENV = {
   // API配置
-  API_URL: process.env.NEXT_PUBLIC_API_URL,
+  API_URL: process.env.NEXT_API_URL,
 
   // 数据库配置
   MONGODB_URI: process.env.MONGODB_URI,
