@@ -11,9 +11,12 @@
     "build:prod": "NODE_ENV=production next build",
     "start:dev": "NODE_ENV=development next start",
     "start:prod": "NODE_ENV=production next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "ts-node scripts/migrate-db.ts"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongodb": "^6.15.0",
     "mongoose": "^8.0.3",
     "next": "15.2.1",
     "react": "^19.0.0",
@@ -29,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

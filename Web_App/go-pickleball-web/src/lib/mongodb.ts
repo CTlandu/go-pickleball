@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME;
 
 if (!MONGODB_URI) {
   throw new Error("请在环境变量中设置 MONGODB_URI");
+}
+
+if (!MONGODB_DB_NAME) {
+  throw new Error("请在环境变量中设置 MONGODB_DB_NAME");
 }
 
 /**
@@ -33,9 +38,11 @@ async function dbConnect(): Promise<mongoose.Connection> {
   if (!cached.promise) {
     const opts: mongoose.ConnectOptions = {
       bufferCommands: true,
+      dbName: MONGODB_DB_NAME,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      console.log("MongoDB 连接成功");
       return mongoose.connection;
     });
   }
@@ -44,6 +51,7 @@ async function dbConnect(): Promise<mongoose.Connection> {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
+    console.error("MongoDB 连接失败:", e);
     throw e;
   }
 
