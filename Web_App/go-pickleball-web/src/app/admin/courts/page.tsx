@@ -112,77 +112,79 @@ export default function AdminCourtsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">
-        {editingCourt ? "编辑球场信息" : "添加新球场"}
-      </h1>
+    <div className="min-h-screen bg-white">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold mb-6 text-gray-900">
+          {editingCourt ? "编辑球场信息" : "添加新球场"}
+        </h1>
 
-      {loading ? (
-        <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-        </div>
-      ) : (
-        <>
-          <CourtForm
-            editingCourt={editingCourt}
-            onSubmit={handleSubmit}
-            onCancel={handleCancelEdit}
-          />
-
-          {courts.length > 0 ? (
-            <CourtList
-              courts={courts}
-              onEdit={handleEditCourt}
-              onDelete={handleDelete}
-              onImageClick={handleImageClick}
+        {loading ? (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
+          <>
+            <CourtForm
+              editingCourt={editingCourt}
+              onSubmit={handleSubmit}
+              onCancel={handleCancelEdit}
             />
-          ) : (
-            <div className="mt-8 text-center py-10 bg-gray-50 rounded-lg">
-              <p className="text-gray-500">暂无球场信息</p>
-            </div>
-          )}
-        </>
-      )}
 
-      {/* 图片查看模态框 */}
-      {selectedImage && selectedImage.trim() !== "" && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-          onClick={() => setSelectedImage(null)}
-        >
+            {courts.length > 0 ? (
+              <CourtList
+                courts={courts}
+                onEdit={handleEditCourt}
+                onDelete={handleDelete}
+                onImageClick={handleImageClick}
+              />
+            ) : (
+              <div className="mt-8 text-center py-10 bg-gray-50 rounded-lg">
+                <p className="text-gray-500">暂无球场信息</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* 图片查看模态框 */}
+        {selectedImage && selectedImage.trim() !== "" && (
           <div
-            className="relative max-w-4xl max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+            onClick={() => setSelectedImage(null)}
           >
-            <Image
-              src={selectedImage}
-              alt="球场图片"
-              width={800}
-              height={600}
-              className="object-contain"
-              unoptimized={selectedImage.startsWith("data:")}
-            />
-            <button
-              className="absolute top-4 right-4 text-white text-xl bg-black bg-opacity-50 w-8 h-8 rounded-full"
-              onClick={() => setSelectedImage(null)}
+            <div
+              className="relative max-w-4xl max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
             >
-              ×
+              <Image
+                src={selectedImage}
+                alt="球场图片"
+                width={800}
+                height={600}
+                className="object-contain"
+                unoptimized={selectedImage.startsWith("data:")}
+              />
+              <button
+                className="absolute top-4 right-4 text-white text-xl bg-black bg-opacity-50 w-8 h-8 rounded-full"
+                onClick={() => setSelectedImage(null)}
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
+        {message && (
+          <div className="fixed bottom-4 right-4 p-4 rounded-md bg-green-100 text-green-700 shadow-lg">
+            {message}
+            <button
+              className="ml-3 text-sm text-green-800"
+              onClick={() => setMessage("")}
+            >
+              关闭
             </button>
           </div>
-        </div>
-      )}
-
-      {message && (
-        <div className="fixed bottom-4 right-4 p-4 rounded-md bg-green-100 text-green-700 shadow-lg">
-          {message}
-          <button
-            className="ml-3 text-sm text-green-800"
-            onClick={() => setMessage("")}
-          >
-            关闭
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

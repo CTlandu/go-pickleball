@@ -171,7 +171,7 @@ export default function CourtForm({
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-900"
         >
           球场名称
         </label>
@@ -182,7 +182,7 @@ export default function CourtForm({
           value={formData.name}
           onChange={handleInputChange}
           required
-          className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
         />
       </div>
 
@@ -190,7 +190,7 @@ export default function CourtForm({
         <div>
           <label
             htmlFor="province"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             省份
           </label>
@@ -201,13 +201,13 @@ export default function CourtForm({
             value={formData.province}
             onChange={handleInputChange}
             required
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
         <div>
           <label
             htmlFor="city"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             城市
           </label>
@@ -218,13 +218,13 @@ export default function CourtForm({
             value={formData.city}
             onChange={handleInputChange}
             required
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
         <div>
           <label
             htmlFor="district"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             区县
           </label>
@@ -235,7 +235,7 @@ export default function CourtForm({
             value={formData.district}
             onChange={handleInputChange}
             required
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
       </div>
@@ -243,7 +243,7 @@ export default function CourtForm({
       <div>
         <label
           htmlFor="address"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-900"
         >
           详细地址
         </label>
@@ -254,7 +254,7 @@ export default function CourtForm({
           value={formData.address}
           onChange={handleInputChange}
           required
-          className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
         />
       </div>
 
@@ -262,7 +262,7 @@ export default function CourtForm({
         <div>
           <label
             htmlFor="contact.telephone"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             电话
           </label>
@@ -272,13 +272,13 @@ export default function CourtForm({
             name="contact.telephone"
             value={formData.contact.telephone}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
         <div>
           <label
             htmlFor="contact.wechat"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             微信
           </label>
@@ -288,13 +288,13 @@ export default function CourtForm({
             name="contact.wechat"
             value={formData.contact.wechat}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
         <div>
           <label
             htmlFor="contact.rednote"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             小红书
           </label>
@@ -304,13 +304,13 @@ export default function CourtForm({
             name="contact.rednote"
             value={formData.contact.rednote}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
         <div>
           <label
             htmlFor="contact.meituan"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-900"
           >
             美团
           </label>
@@ -320,7 +320,7 @@ export default function CourtForm({
             name="contact.meituan"
             value={formData.contact.meituan}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
           />
         </div>
       </div>
@@ -328,7 +328,7 @@ export default function CourtForm({
       <div>
         <label
           htmlFor="openHours"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-900"
         >
           营业时间
         </label>
@@ -338,14 +338,14 @@ export default function CourtForm({
           name="openHours"
           value={formData.openHours}
           onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
         />
       </div>
 
       <div>
         <label
           htmlFor="price"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-900"
         >
           价格信息
         </label>
@@ -355,7 +355,7 @@ export default function CourtForm({
           name="price"
           value={formData.price}
           onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-900 bg-white"
         />
       </div>
 

@@ -32,41 +32,51 @@ export default function CourtList({
 
   return (
     <div className="mt-8">
-      <h2 className="text-xl font-bold mb-4">已添加的球场</h2>
+      <h2 className="text-xl font-bold mb-4 text-gray-800">已添加的球场</h2>
       <div className="grid grid-cols-1 gap-4">
         {courts.map((court) => (
           <div key={court._id} className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex flex-col md:flex-row md:items-center justify-between">
               <div className="mb-4 md:mb-0 md:mr-4">
-                <h3 className="text-lg font-bold">{court.name}</h3>
-                <p className="text-gray-600 mt-1">
+                <h3 className="text-lg font-bold text-gray-900">
+                  {court.name}
+                </h3>
+                <p className="text-gray-800 mt-1">
                   {court.province} {court.city} {court.district}
                 </p>
-                <p className="text-gray-600 mt-1">{court.address}</p>
+                <p className="text-gray-800 mt-1">{court.address}</p>
 
                 <div className="mt-3">
-                  <p className="text-sm">
+                  <p className="text-sm text-gray-800">
                     <span className="font-medium">营业时间:</span>{" "}
                     {court.openHours}
                   </p>
-                  <p className="text-sm">
+                  <p className="text-sm text-gray-800">
                     <span className="font-medium">价格:</span> {court.price}
                   </p>
                 </div>
 
                 <div className="mt-3">
-                  <p className="text-sm font-medium">联系方式:</p>
+                  <p className="text-sm font-medium text-gray-900">联系方式:</p>
                   {court.contact.telephone && (
-                    <p className="text-sm">电话: {court.contact.telephone}</p>
+                    <p className="text-sm text-gray-800">
+                      电话: {court.contact.telephone}
+                    </p>
                   )}
                   {court.contact.wechat && (
-                    <p className="text-sm">微信: {court.contact.wechat}</p>
+                    <p className="text-sm text-gray-800">
+                      微信: {court.contact.wechat}
+                    </p>
                   )}
                   {court.contact.rednote && (
-                    <p className="text-sm">小红书: {court.contact.rednote}</p>
+                    <p className="text-sm text-gray-800">
+                      小红书: {court.contact.rednote}
+                    </p>
                   )}
                   {court.contact.meituan && (
-                    <p className="text-sm">美团: {court.contact.meituan}</p>
+                    <p className="text-sm text-gray-800">
+                      美团: {court.contact.meituan}
+                    </p>
                   )}
                 </div>
               </div>
