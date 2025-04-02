@@ -23,6 +23,7 @@ interface Court {
 export default function CourtsPage() {
   const [courts, setCourts] = useState<Court[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,11 +32,24 @@ export default function CourtsPage() {
 
   const fetchCourts = async () => {
     try {
+      setLoading(true);
+      setError(null);
+
       const res = await fetch("/api/courts");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "获取球场数据失败");
+      }
+
       const data = await res.json();
+      if (!Array.isArray(data)) {
+        throw new Error("返回数据格式错误");
+      }
+
       setCourts(data);
     } catch (error) {
       console.error("获取球场信息失败:", error);
+      setError(error instanceof Error ? error.message : "获取球场信息失败");
     } finally {
       setLoading(false);
     }
@@ -45,6 +59,30 @@ export default function CourtsPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-xl">加载中...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-red-600">
+          {error}
+          <button
+            onClick={fetchCourts}
+            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            重试
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!courts.length) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-600">暂无球场信息</div>
       </div>
     );
   }
