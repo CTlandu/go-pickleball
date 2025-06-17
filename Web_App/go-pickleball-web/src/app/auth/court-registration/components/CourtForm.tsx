@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Court, CourtFormData } from "../types";
+import Image from "next/image";
 
 interface CourtFormProps {
   editingCourt?: Court;
@@ -39,13 +40,6 @@ export default function CourtForm({
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  const [certificateFiles, setCertificateFiles] = useState<{
-    businessLicense?: File;
-    managerCertificate?: File;
-    otherCertificates: File[];
-  }>({
-    otherCertificates: [],
-  });
   const [certificatePreviewUrls, setCertificatePreviewUrls] = useState<{
     businessLicense?: string;
     managerCertificate?: string;
@@ -469,9 +463,11 @@ export default function CourtForm({
         <div className="grid grid-cols-2 gap-4">
           {previewUrls.map((url, index) => (
             <div key={index} className="relative group">
-              <img
+              <Image
                 src={url}
                 alt={`预览 ${index + 1}`}
+                width={128}
+                height={128}
                 className="h-40 w-full object-cover rounded-lg"
               />
               <button
@@ -525,9 +521,11 @@ export default function CourtForm({
             <div className="mt-2">
               {certificatePreviewUrls.businessLicense ? (
                 <div className="relative group">
-                  <img
+                  <Image
                     src={certificatePreviewUrls.businessLicense}
                     alt="营业执照"
+                    width={128}
+                    height={128}
                     className="h-40 w-full object-cover rounded-lg"
                   />
                   <button
@@ -578,9 +576,11 @@ export default function CourtForm({
             <div className="mt-2">
               {certificatePreviewUrls.managerCertificate ? (
                 <div className="relative group">
-                  <img
+                  <Image
                     src={certificatePreviewUrls.managerCertificate}
                     alt="负责人证明"
+                    width={128}
+                    height={128}
                     className="h-40 w-full object-cover rounded-lg"
                   />
                   <button
@@ -631,9 +631,11 @@ export default function CourtForm({
             <div className="mt-2 grid grid-cols-2 gap-4">
               {certificatePreviewUrls.otherCertificates.map((url, index) => (
                 <div key={index} className="relative group">
-                  <img
+                  <Image
                     src={url}
                     alt={`其他证明 ${index + 1}`}
+                    width={128}
+                    height={128}
                     className="h-40 w-full object-cover rounded-lg"
                   />
                   <button
