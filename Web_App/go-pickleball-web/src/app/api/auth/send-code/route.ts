@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import redis from "@/lib/redis";
 
 // 生成6位随机验证码
 function generateVerificationCode(): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
-
-// 存储验证码的临时对象（实际项目中应该使用Redis等缓存服务）
-export const verificationCodes: {
-  [key: string]: { code: string; timestamp: number };
-} = {};
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,12 +46,9 @@ export async function POST(request: NextRequest) {
 
     console.log("短信发送成功");
 
-    // 存储验证码（5分钟有效期）
-    verificationCodes[phone] = {
-      code,
-      timestamp: Date.now(),
-    };
-    console.log("验证码已存储");
+    // 存储验证码到Redis，设置5分钟过期
+    await redis.set(`verification:${phone}`, code, "EX", 300);
+    console.log("验证码已存储到Redis");
 
     return NextResponse.json({ message: "验证码已发送" });
   } catch (error) {
